@@ -34,8 +34,20 @@ jobs:
           format: sarif
           output: results.sarif
           exit-code: 0
-      # Upload SARIF file generated in previous step
-      - name: Upload SARIF file
+          working-directory: ./WebGoat
+      # Upload SARIF file generated in previous step like CodeQL vulns
+      - name: Upload vulns to CodeQL
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: results.sarif
+          working-directory: ./WebGoat
+      # Upload SARIF file generated in previous step
+      - name: Upload SARIF file
+        uses: actions/upload-artifact@v4.0.0
+        with:
+          # Artifact name
+          name: bearer_vulns.sarif
+          # A file, directory or wildcard pattern that describes what to upload
+          path: results.sarif
+          working-directory: ./WebGoat
+          
