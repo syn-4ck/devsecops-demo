@@ -22,7 +22,7 @@ jobs:
         env:
           SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
 
-      - run: ls
+      - run: cat semgrep.sarif
 
       # Upload SARIF file generated in previous step
       - name: Upload SARIF file
