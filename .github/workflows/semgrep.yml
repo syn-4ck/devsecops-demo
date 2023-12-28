@@ -21,7 +21,7 @@ jobs:
       # Fetch project source with GitHub Actions Checkout.
       - uses: actions/checkout@v3
       # Run the "semgrep ci" command on the command line of the docker image.
-      - run: semgrep ci --sarif --output report.sarif --metrics=off
+      - run: semgrep ci --sarif --metrics=off > semgrep.sarif
         env:
           SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
 
@@ -35,7 +35,7 @@ jobs:
           path: semgrep.sarif
 
       # Upload SARIF file generated in previous step
-      - name: Upload SARIF file
+      - name: Upload SARIF file to Security tab
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: semgrep.sarif
