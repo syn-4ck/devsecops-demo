@@ -19,7 +19,7 @@ jobs:
 
       - name: Build an image from Dockerfile
         run: |
-          docker build -t docker.io/ghsyn4ck/demo-devsecops:${{ github.sha }} ./src/Dockerfile
+          docker build -t docker.io/ghsyn4ck/demo-devsecops:${{ github.sha }} ./WebGoat/Dockerfile
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
