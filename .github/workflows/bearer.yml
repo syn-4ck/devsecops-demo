@@ -39,7 +39,7 @@ jobs:
       - name: Upload vulns to CodeQL
         uses: github/codeql-action/upload-sarif@v2
         with:
-          sarif_file: ./WebGoat/results.sarif
+          sarif_file: results.sarif
       # Upload SARIF file generated in previous step
       - name: Upload SARIF file
         uses: actions/upload-artifact@v4.0.0
@@ -47,5 +47,5 @@ jobs:
           # Artifact name
           name: bearer_vulns.sarif
           # A file, directory or wildcard pattern that describes what to upload
-          path: ./WebGoat/results.sarif
+          path: results.sarif
           
