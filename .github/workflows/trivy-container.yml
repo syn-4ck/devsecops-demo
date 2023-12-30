@@ -18,8 +18,9 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build an image from Dockerfile
+        working-directory: WebGoat
         run: |
-          docker build -t docker.io/ghsyn4ck/demo-devsecops:${{ github.sha }} WebGoat/Dockerfile
+          docker build -t docker.io/ghsyn4ck/demo-devsecops:${{ github.sha }} Dockerfile
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
