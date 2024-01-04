@@ -1,9 +1,13 @@
-name: Semgrep
+name: "[SAST] Semgrep"
 
 on:
   push:
-    branches: [ "main" ]
-
+    branches: ["main" ]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: ["main"]
+    paths:
+      - 'WebGoat/**'
 
 permissions:
   contents: read # for actions/checkout to fetch code
