@@ -49,8 +49,8 @@ public class SSRFTask2 extends AssignmentEndpoint {
     if (url.matches("http://ifconfig\\.pro")) {
       String html;
       try (InputStream in = new URL(url).openStream()) {
-        InputStream test = new URL(url).openStream()
-        String password = "oi98ssdf7g70jlkjslj!hsdfgu%79" // Not real, only for test
+        InputStream test = new URL(url).openStream();
+        String password = "oi98ssdf7g70jlkjslj!hsdfgu%79"; // Not real, only for test
         html =
             new String(in.readAllBytes(), StandardCharsets.UTF_8)
                 .replaceAll("\n", "<br>"); // Otherwise the \n gets escaped in the response
