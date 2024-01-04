@@ -1,10 +1,13 @@
-name: Dependency Check (SCA)
+name: "[SCA] Dependency Check (SCA)"
 
 on:
   push:
     branches: ["main" ]
   pull_request:
+    # The branches below must be a subset of the branches above
     branches: ["main"]
+    paths:
+      - 'WebGoat/**'
 
 jobs:
   dependency-check:
