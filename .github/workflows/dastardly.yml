@@ -34,6 +34,7 @@ jobs:
 
       # Upload SARIF file generated in previous step
       - name: Upload SARIF file
+        if: always()
         uses: actions/upload-artifact@v4.0.0
         with:
           # Artifact name
