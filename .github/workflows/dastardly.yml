@@ -1,0 +1,42 @@
+name: "[DAST] Dastardly"
+
+on:
+  push:
+    branches: ["main" ]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: ["main"]
+    paths:
+      - 'WebGoat/**'
+
+jobs:
+  semgrep:
+    # If you are self-hosting, change the following `runs-on` value: 
+    runs-on: ubuntu-latest
+    container:
+      # A Docker image with Semgrep installed. Do not change this.
+      image: returntocorp/semgrep
+    steps:
+      # Fetch project source with GitHub Actions Checkout.
+      - uses: actions/checkout@v3
+      
+      - name: Run Dastardly Action Step
+        uses: PortSwigger/dastardly-github-action@main
+        with:
+          target-url: 'https://ginandjuice.shop'
+
+      - name: Publish Test Report
+        if: always()                                    # Forces this step to always run
+        uses: mikepenz/action-junit-report@v3
+        with:
+          report_paths: '**/dastardly-report.xml'       # You need to update this path if you pass in a different output filename to the Dastardly action
+          require_tests: true
+
+      # Upload SARIF file generated in previous step
+      - name: Upload SARIF file
+        uses: actions/upload-artifact@v4.0.0
+        with:
+          # Artifact name
+          name: dastardly-report.xml
+          # A file, directory or wildcard pattern that describes what to upload
+          path: dastardly-report.xml
