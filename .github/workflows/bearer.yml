@@ -33,21 +33,21 @@ jobs:
         uses: bearer/bearer-action@828eeb928ce2f4a7ca5ed57fb8b59508cb8c79bc
         with:
           api-key: ${{ secrets.BEARER_TOKEN }}
-          format: sarif
-          output: results.sarif
+          format: json
+          output: results.json
           exit-code: 0
           path: ./WebGoat
       # Upload SARIF file generated in previous step like CodeQL vulns
-      - name: Upload vulns to CodeQL
-        uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: results.sarif
+      #- name: Upload vulns to CodeQL
+        #uses: github/codeql-action/upload-sarif@v2
+        #with:
+       #   sarif_file: results.sarif
       # Upload SARIF file generated in previous step
       - name: Upload SARIF file
         uses: actions/upload-artifact@v4.0.0
         with:
           # Artifact name
-          name: bearer_vulns.sarif
+          name: bearer_vulns.json
           # A file, directory or wildcard pattern that describes what to upload
-          path: results.sarif
+          path: results.json
           
